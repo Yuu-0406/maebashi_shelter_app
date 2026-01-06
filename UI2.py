@@ -14,9 +14,9 @@ def check_password():
     if "password_correct" not in st.session_state:
         st.title("前橋市 避難所解析システム")
         correct_password = st.secrets.get("password", "114")
-        pwd = st.text_input("パスワードを入力してください", type="password", key="pwd_input")
+        pwd = st.text_input("パスワードを入力してください", type="password")
         if st.button("ログイン"):
-            if pwd == APP_PASSWORD:
+            if pwd == correct_password:
                 st.session_state.password_correct = True
                 st.rerun()
             else:
@@ -26,7 +26,7 @@ def check_password():
 
 # --- 設定 ---
 CSV_FILE = "emergency_shelter_maebashi.csv"
-GRAPH_CACHE = "maebashi_graph.graphml"
+GRAPH_CACHE = "maebashi_graph.graphml.gz"
 RESULT_CACHE_DIR = "cache_results"
 
 @st.cache_resource
@@ -179,4 +179,5 @@ def main():
         st.write(", ".join(zero_shelters["避難所名"].tolist()))
 
 if __name__ == "__main__":
+
     main()
