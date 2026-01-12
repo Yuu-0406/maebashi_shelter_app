@@ -179,7 +179,7 @@ def main():
     ))
 
     # --- 結果表示 ---
-    st.subheader("避難所別の担当道路数ランキング")
+    st.subheader("避難所別の担当道路数")
     st.dataframe(res_df, use_container_width=True)
 
     # 担当0の警告
